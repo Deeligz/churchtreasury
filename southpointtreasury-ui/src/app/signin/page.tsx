@@ -105,9 +105,6 @@ export default function SignIn() {
             <div className="form-group">
               <label htmlFor="email">Email Address</label>
               <div className="input-wrapper">
-                <span className="input-icon">
-                  <MailIcon />
-                </span>
                 <input
                   type="email"
                   id="email"

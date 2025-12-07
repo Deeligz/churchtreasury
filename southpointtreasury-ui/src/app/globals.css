@@ -1082,7 +1082,7 @@ input {
 
 .input-wrapper input {
   width: 100%;
-  padding: 14px 14px 14px 56px;
+  padding: 14px;
   border: 1px solid var(--border-color);
   border-radius: 12px;
   font-size: 14px;
