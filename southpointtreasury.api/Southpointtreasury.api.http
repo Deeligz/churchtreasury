@@ -1,0 +1,6 @@
+@Southpointtreasury.api_HostAddress = http://localhost:5043
+
+GET {{Southpointtreasury.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

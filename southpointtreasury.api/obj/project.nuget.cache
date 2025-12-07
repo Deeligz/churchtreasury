@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "tsPWW93b/n8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\danie\\OneDrive\\Documents\\Southpointtreasuryapp\\southpointtreasury.api\\Southpointtreasury.api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\danie\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.0\\microsoft.aspnetcore.openapi.10.0.0.nupkg.sha512",
+    "C:\\Users\\danie\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
