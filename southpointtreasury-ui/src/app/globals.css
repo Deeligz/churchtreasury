@@ -1048,8 +1048,8 @@ input {
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 8px;
+  gap: 0;
+  margin-bottom: 16px;
 }
 
 .form-group label {
@@ -1057,7 +1057,7 @@ input {
   font-weight: 500;
   color: var(--text-primary);
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
 }
 
 .input-wrapper {
