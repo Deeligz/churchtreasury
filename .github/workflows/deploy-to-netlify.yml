@@ -3,13 +3,8 @@ name: Deploy Frontend to Netlify
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'southpointtreasury-ui/**'
-      - '.github/workflows/deploy-to-netlify.yml'
   pull_request:
     branches: [ main ]
-    paths:
-      - 'southpointtreasury-ui/**'
 
 jobs:
   build-and-deploy:
@@ -25,12 +20,14 @@ jobs:
           node-version: '18'
       
       - name: Install dependencies
-        working-directory: southpointtreasury-ui
-        run: npm install --legacy-peer-deps --prefer-offline --no-audit
+        run: |
+          cd southpointtreasury-ui
+          npm install --legacy-peer-deps --prefer-offline --no-audit
       
       - name: Build project
-        working-directory: southpointtreasury-ui
-        run: npm run build
+        run: |
+          cd southpointtreasury-ui
+          npm run build
       
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.1
