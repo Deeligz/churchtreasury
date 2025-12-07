@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-          cache-dependency-path: 'southpointtreasury-ui/package-lock.json'
+          cache-dependency-path: '**/package-lock.json'
       
       - name: Install dependencies
         working-directory: southpointtreasury-ui
@@ -37,7 +37,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.1
         with:
-          publish-dir: './southpointtreasury-ui/.next/static'
+          publish-dir: './southpointtreasury-ui/.next'
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: 'Deploy from GitHub Actions'
