@@ -100,9 +100,11 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
 
   return (
     <aside className={`sidebar ${isOpen ? "mobile-open" : ""}`}>
-      <div className="sidebar-logo">
-        <img src="/Seventh Day Adventist Church.svg" alt="SDA Logo" className="sidebar-sda-logo" />
-      </div>
+      <Link href="/dashboard" onClick={handleNavClick}>
+        <div className="sidebar-logo">
+          <img src="/Seventh Day Adventist Church.svg" alt="SDA Logo" className="sidebar-sda-logo" />
+        </div>
+      </Link>
 
       <nav className="sidebar-nav">
         {navItems.map((item) => (
