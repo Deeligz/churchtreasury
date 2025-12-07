@@ -1,14 +1,16 @@
-"use client";
-
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+export const metadata = {
+  title: 'Redirecting...',
+  other: {
+    'http-equiv': 'refresh',
+    content: '0; url=/signin',
+  },
+};
 
 export default function Home() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.push("/signin");
-  }, [router]);
-
-  return null;
+  return (
+    <>
+      <meta httpEquiv="refresh" content="0; url=/signin" />
+      <p>Redirecting to sign in...</p>
+    </>
+  );
 }
