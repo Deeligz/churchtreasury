@@ -29,6 +29,12 @@ jobs:
           cd southpointtreasury-ui
           npm run build
       
+      - name: Verify build output
+        run: |
+          echo "Checking build output..."
+          ls -la southpointtreasury-ui/out/ || echo "out/ folder not found"
+          find southpointtreasury-ui/out -type f | head -20 || echo "No files in out/"
+      
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.1
         with:
