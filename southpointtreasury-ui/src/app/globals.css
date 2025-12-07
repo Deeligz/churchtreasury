@@ -1049,12 +1049,15 @@ input {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 8px;
 }
 
 .form-group label {
   font-size: 14px;
   font-weight: 500;
   color: var(--text-primary);
+  display: block;
+  margin-bottom: 4px;
 }
 
 .input-wrapper {
