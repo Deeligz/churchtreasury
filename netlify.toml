@@ -1,0 +1,4 @@
+[build]
+  base = "southpointtreasury-ui"
+  command = "npm run build"
+  publish = "southpointtreasury-ui/out"
