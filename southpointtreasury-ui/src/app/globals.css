@@ -2136,6 +2136,11 @@ input {
   .transaction-time {
     display: none;
   }
+
+  /* Hide upcoming event card on mobile */
+  .my-cards {
+    display: none;
+  }
 }
 
 /* ========================================
