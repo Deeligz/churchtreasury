@@ -2860,7 +2860,9 @@ input {
   }
 
   .personal-info-grid {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px;
   }
 }
 
@@ -3041,22 +3043,25 @@ input {
 
 @media (max-width: 768px) {
   .loose-offering-container {
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
   }
 
   .coins-section,
   .bills-section {
-    min-width: 100%;
+    width: 100%;
   }
 
   .coins-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px;
   }
 
   .bills-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px;
   }
 
   .coin-field label,
@@ -3077,6 +3082,12 @@ input {
 
   .section-total {
     font-size: 11px;
+  }
+
+  .check-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px;
   }
 
   .check-row input {
