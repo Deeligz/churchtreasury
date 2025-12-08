@@ -2886,21 +2886,22 @@ input {
 }
 
 .loose-offering-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
   margin: 8px 0;
 }
 
-.coins-section,
+.coins-section {
+  grid-column: 1;
+}
+
 .bills-section {
-  flex: 1 1 auto;
-  min-width: 300px;
+  grid-column: 2;
 }
 
 .checks-section {
-  flex-basis: 100%;
+  grid-column: 1 / -1;
   width: 100%;
 }
 
