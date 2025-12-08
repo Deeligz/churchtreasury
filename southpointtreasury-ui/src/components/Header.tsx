@@ -1,5 +1,13 @@
 "use client";
 
+// Helper function to get greeting based on time of day
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good Morning";
+  if (hour < 18) return "Good Afternoon";
+  return "Good Evening";
+};
+
 // Icons
 const MenuIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -43,19 +51,37 @@ interface HeaderProps {
 }
 
 export default function Header({ title, searchPlaceholder = "Search for transaction, item, etc", onMenuClick }: HeaderProps) {
+  // TODO: Replace with actual user name from authentication
+  const userName = "John Doe";
+  const greeting = getGreeting();
+
+  // Format current date
+  const currentDate = new Date().toLocaleDateString('en-US', {
+    weekday: 'short',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  });
+
   return (
     <header className="header">
       <div className="header-left">
         <button className="mobile-menu-button" onClick={onMenuClick}>
           <MenuIcon />
         </button>
-        <h1 className="header-title">{title}</h1>
+        <h1 className="header-title">
+          {title}
+          <span className="header-divider">|</span>
+          <span className="header-greeting">{greeting}, {userName}</span>
+          <span className="header-divider">|</span>
+          <span className="header-date">{currentDate}</span>
+        </h1>
+      </div>
+      <div className="header-right">
         <div className="search-box">
           <SearchIcon />
           <input type="text" placeholder={searchPlaceholder} />
         </div>
-      </div>
-      <div className="header-right">
         <div className="header-icon">
           <MessageIcon />
         </div>

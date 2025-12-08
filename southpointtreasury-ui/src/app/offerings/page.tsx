@@ -21,6 +21,8 @@ export default function OfferingsPage() {
   const [zip, setZip] = useState("");
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [tel, setTel] = useState("");
+  const [envelopeCheckNumber, setEnvelopeCheckNumber] = useState("");
+  const [envelopeTotal, setEnvelopeTotal] = useState("");
   
   // Tithe
   const [tithe, setTithe] = useState("");
@@ -46,7 +48,13 @@ export default function OfferingsPage() {
   const [miscOther, setMiscOther] = useState("");
   
   // Loose Offerings
-  const [looseOffering, setLooseOffering] = useState("");
+  const [coins, setCoins] = useState({
+    penny: "", nickel: "", dime: "", quarter: "", halfDollar: "", dollar: ""
+  });
+  const [bills, setBills] = useState({
+    one: "", two: "", five: "", ten: "", twenty: "", fifty: "", hundred: ""
+  });
+  const [checks, setChecks] = useState([{ amount: "", checkNumber: "" }]);
   
   // Payment
   const [paymentMethod, setPaymentMethod] = useState<"cash" | "check">("cash");
@@ -70,7 +78,11 @@ export default function OfferingsPage() {
 
   const handleLooseOfferingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Loose Offering submitted! Amount: $${parseFloat(looseOffering || "0").toFixed(2)}`);
+    const coinsTotal = Object.values(coins).reduce((sum, val) => sum + (parseFloat(val) || 0), 0);
+    const billsTotal = Object.values(bills).reduce((sum, val) => sum + (parseFloat(val) || 0), 0);
+    const checksTotal = checks.reduce((sum, check) => sum + (parseFloat(check.amount) || 0), 0);
+    const total = coinsTotal + billsTotal + checksTotal;
+    alert(`Loose Offering submitted! Total: $${total.toFixed(2)}`);
   };
 
   return (
@@ -80,7 +92,7 @@ export default function OfferingsPage() {
         <div className="offerings-top-row">
           {/* Personal Information - Compact */}
           <div className="offering-card personal-info-card">
-            <h3 className="offering-card-title">Personal Information</h3>
+            <h3 className="offering-card-title">Envelope</h3>
             <div className="personal-info-grid">
               <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" className="offering-input" />
               <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Address" className="offering-input" />
@@ -89,6 +101,8 @@ export default function OfferingsPage() {
               <input type="text" value={zip} onChange={(e) => setZip(e.target.value)} placeholder="Zip" className="offering-input small" />
               <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="offering-input small" />
               <input type="tel" value={tel} onChange={(e) => setTel(e.target.value)} placeholder="Phone" className="offering-input" />
+              <input type="text" value={envelopeCheckNumber} onChange={(e) => setEnvelopeCheckNumber(e.target.value)} placeholder="Check Number" className="offering-input small" />
+              <input type="number" step="0.01" value={envelopeTotal} onChange={(e) => setEnvelopeTotal(e.target.value)} placeholder="Total" className="offering-input small" />
             </div>
           </div>
 
@@ -277,21 +291,122 @@ export default function OfferingsPage() {
       {/* Loose Offerings - Separate Form */}
       <form onSubmit={handleLooseOfferingSubmit} className="offerings-loose-section">
         <div className="offering-card loose-offering-card">
-          <h3 className="offering-card-title">Loose Offerings</h3>
-          <div className="category-fields">
-            <div className="category-field">
-              <label>Undesignated Cash Offering</label>
-              <div className="field-input">
-                <span>$</span>
-                <input type="number" step="0.01" value={looseOffering} onChange={(e) => setLooseOffering(e.target.value)} placeholder="0.00" />
+          <h3 className="offering-card-title">Current Offering</h3>
+          
+          <div className="loose-offering-container">
+            {/* Coins Section */}
+            <div className="loose-section coins-section">
+              <h4>Coins</h4>
+              <div className="coins-grid">
+                <div className="coin-field">
+                  <label>1¢</label>
+                  <input type="number" step="0.01" value={coins.penny} onChange={(e) => setCoins({...coins, penny: e.target.value})} placeholder="$0.00" />
+                </div>
+                <div className="coin-field">
+                  <label>5¢</label>
+                  <input type="number" step="0.01" value={coins.nickel} onChange={(e) => setCoins({...coins, nickel: e.target.value})} placeholder="$0.00" />
+                </div>
+                <div className="coin-field">
+                  <label>10¢</label>
+                  <input type="number" step="0.01" value={coins.dime} onChange={(e) => setCoins({...coins, dime: e.target.value})} placeholder="$0.00" />
+                </div>
+                <div className="coin-field">
+                  <label>25¢</label>
+                  <input type="number" step="0.01" value={coins.quarter} onChange={(e) => setCoins({...coins, quarter: e.target.value})} placeholder="$0.00" />
+                </div>
+                <div className="coin-field">
+                  <label>50¢</label>
+                  <input type="number" step="0.01" value={coins.halfDollar} onChange={(e) => setCoins({...coins, halfDollar: e.target.value})} placeholder="$0.00" />
+                </div>
+                <div className="coin-field">
+                  <label>$1</label>
+                  <input type="number" step="0.01" value={coins.dollar} onChange={(e) => setCoins({...coins, dollar: e.target.value})} placeholder="$0.00" />
+                </div>
+              </div>
+              <div className="section-total">
+                Total: ${(Object.values(coins).reduce((sum, val) => sum + (parseFloat(val) || 0), 0)).toFixed(2)}
               </div>
             </div>
-            <div className="loose-offering-actions">
-              <button type="submit" className="offering-btn primary">
-                <SaveIcon />
-                Submit
-              </button>
+
+            {/* Bills Section */}
+            <div className="loose-section bills-section">
+              <h4>Bills</h4>
+              <div className="bills-grid">
+                <div className="bill-field">
+                  <label>$1</label>
+                  <input type="number" step="0.01" value={bills.one} onChange={(e) => setBills({...bills, one: e.target.value})} placeholder="$0" />
+                </div>
+                <div className="bill-field">
+                  <label>$2</label>
+                  <input type="number" step="0.01" value={bills.two} onChange={(e) => setBills({...bills, two: e.target.value})} placeholder="$0" />
+                </div>
+                <div className="bill-field">
+                  <label>$5</label>
+                  <input type="number" step="0.01" value={bills.five} onChange={(e) => setBills({...bills, five: e.target.value})} placeholder="$0" />
+                </div>
+                <div className="bill-field">
+                  <label>$10</label>
+                  <input type="number" step="0.01" value={bills.ten} onChange={(e) => setBills({...bills, ten: e.target.value})} placeholder="$0" />
+                </div>
+                <div className="bill-field">
+                  <label>$20</label>
+                  <input type="number" step="0.01" value={bills.twenty} onChange={(e) => setBills({...bills, twenty: e.target.value})} placeholder="$0" />
+                </div>
+                <div className="bill-field">
+                  <label>$50</label>
+                  <input type="number" step="0.01" value={bills.fifty} onChange={(e) => setBills({...bills, fifty: e.target.value})} placeholder="$0" />
+                </div>
+                <div className="bill-field">
+                  <label>$100</label>
+                  <input type="number" step="0.01" value={bills.hundred} onChange={(e) => setBills({...bills, hundred: e.target.value})} placeholder="$0" />
+                </div>
+              </div>
+              <div className="section-total">
+                Total: ${(Object.values(bills).reduce((sum, val) => sum + (parseFloat(val) || 0), 0)).toFixed(2)}
+              </div>
             </div>
+
+            {/* Checks Section */}
+            <div className="loose-section checks-section">
+              <h4>Checks</h4>
+              <div className="checks-grid">
+                {checks.map((check, index) => (
+                  <div key={index} className="check-row">
+                    <input 
+                      type="number" 
+                      step="0.01" 
+                      value={check.amount} 
+                      onChange={(e) => {
+                        const newChecks = [...checks];
+                        newChecks[index].amount = e.target.value;
+                        setChecks(newChecks);
+                      }} 
+                      placeholder="Amount" 
+                    />
+                    <input 
+                      type="text" 
+                      value={check.checkNumber} 
+                      onChange={(e) => {
+                        const newChecks = [...checks];
+                        newChecks[index].checkNumber = e.target.value;
+                        setChecks(newChecks);
+                      }} 
+                      placeholder="Check #" 
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="section-total">
+                Total: ${(checks.reduce((sum, check) => sum + (parseFloat(check.amount) || 0), 0)).toFixed(2)}
+              </div>
+            </div>
+          </div>
+
+          <div className="loose-offering-actions">
+            <button type="submit" className="offering-btn primary">
+              <SaveIcon />
+              Submit
+            </button>
           </div>
         </div>
       </form>
