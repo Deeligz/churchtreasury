@@ -2889,7 +2889,17 @@ input {
 .loose-offering-actions {
   margin-top: 8px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.loose-offering-actions .total-card {
+  padding: 8px 16px;
+}
+
+.loose-offering-actions .total-display {
+  gap: 4px;
 }
 
 .loose-offering-container {
@@ -2935,7 +2945,7 @@ input {
 .coins-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 2px;
+  gap: 8px;
 }
 
 .coin-field {
@@ -2945,14 +2955,14 @@ input {
 }
 
 .coin-field label {
-  font-size: 7px;
+  font-size: 10px;
   color: var(--text-secondary);
-  font-weight: 500;
+  font-weight: 700;
   text-align: center;
 }
 
 .coin-field input {
-  padding: 2px 2px;
+  padding: 0 2px;
   border: 1px solid var(--border-color);
   border-radius: 3px;
   font-size: 9px;
@@ -2961,6 +2971,17 @@ input {
   font-weight: 500;
   text-align: center;
   height: 24px;
+  line-height: 22px;
+}
+
+.coin-field input[type="number"]::-webkit-inner-spin-button,
+.coin-field input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.coin-field input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .coin-field input:focus {
@@ -2968,10 +2989,15 @@ input {
   border-color: var(--primary-blue);
 }
 
+.coin-field input::placeholder {
+  text-align: center;
+  color: var(--text-muted);
+}
+
 .bills-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 2px;
+  gap: 8px;
 }
 
 .bill-field {
@@ -2981,14 +3007,14 @@ input {
 }
 
 .bill-field label {
-  font-size: 7px;
+  font-size: 10px;
   color: var(--text-secondary);
-  font-weight: 500;
+  font-weight: 700;
   text-align: center;
 }
 
 .bill-field input {
-  padding: 2px 2px;
+  padding: 0 2px;
   border: 1px solid var(--border-color);
   border-radius: 3px;
   font-size: 9px;
@@ -2997,6 +3023,17 @@ input {
   font-weight: 500;
   text-align: center;
   height: 24px;
+  line-height: 22px;
+}
+
+.bill-field input[type="number"]::-webkit-inner-spin-button,
+.bill-field input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.bill-field input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .bill-field input:focus {
@@ -3004,16 +3041,21 @@ input {
   border-color: var(--primary-blue);
 }
 
+.bill-field input::placeholder {
+  text-align: center;
+  color: var(--text-muted);
+}
+
 .checks-grid {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 8px;
 }
 
 .check-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2px;
+  gap: 8px;
 }
 
 .check-row label {
@@ -3098,5 +3140,510 @@ input {
   .check-row input {
     font-size: 13px;
     padding: 6px 8px;
+  }
+}
+
+/* ==================== */
+/* Accounts Page - Excel Spreadsheet Style */
+/* ==================== */
+
+.accounts-page {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: calc(100vh - var(--header-height));
+  overflow: hidden;
+}
+
+.accounts-summary-bar {
+  display: flex;
+  gap: 24px;
+  padding: 16px 20px;
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+}
+
+.accounts-summary-bar .summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.accounts-summary-bar .summary-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.accounts-summary-bar .summary-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.spreadsheet-container {
+  flex: 1;
+  background: var(--white);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  overflow: auto;
+  border: 1px solid #D0D5DD;
+}
+
+.spreadsheet-table {
+  display: flex;
+  flex-direction: column;
+  min-width: fit-content;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+.spreadsheet-row {
+  display: flex;
+  border-bottom: 1px solid #E4E7EB;
+}
+
+.spreadsheet-row:last-child {
+  border-bottom: 1px solid #E4E7EB;
+}
+
+.spreadsheet-cell {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #1F2937;
+  border-right: 1px solid #E4E7EB;
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  background: var(--white);
+  transition: all 0.1s ease;
+}
+
+.spreadsheet-cell:last-child {
+  border-right: 1px solid #E4E7EB;
+}
+
+.header-row {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #F1F3F5;
+  border-bottom: 1px solid #C1C7CD;
+}
+
+.header-cell {
+  font-weight: 600;
+  font-size: 11px;
+  color: #495057;
+  text-transform: none;
+  letter-spacing: 0.3px;
+  background: #F1F3F5;
+  border-right: 1px solid #D0D5DD;
+  justify-content: center;
+}
+
+.header-cell:last-child {
+  border-right: 1px solid #D0D5DD;
+}
+
+.data-row {
+  transition: background-color 0.1s ease;
+}
+
+.data-row:nth-child(even) {
+  background: #FAFBFC;
+}
+
+.data-row:nth-child(even) .spreadsheet-cell {
+  background: #FAFBFC;
+}
+
+.data-row:hover {
+  background: #EEF2F6;
+}
+
+.data-row:hover .spreadsheet-cell {
+  background: #EEF2F6;
+}
+
+.data-row .spreadsheet-cell:focus {
+  outline: 2px solid #4F46E5;
+  outline-offset: -2px;
+  background: #FFFFFF;
+}
+
+.data-row .status-badge {
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.data-row .status-badge.active {
+  background: #D4EDDA;
+  color: #155724;
+  border: 1px solid #C3E6CB;
+}
+
+.data-row .status-badge.inactive {
+  background: #F8D7DA;
+  color: #721C24;
+  border: 1px solid #F5C6CB;
+}
+
+.total-row {
+  background: #F1F3F5;
+  border-top: 2px solid #ADB5BD;
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+}
+
+.total-row .spreadsheet-cell {
+  background: #F1F3F5;
+  font-weight: 700;
+  color: #212529;
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover {
+  background: #E0E7EF !important;
+}
+
+.clickable-row:hover .spreadsheet-cell {
+  background: #E0E7EF !important;
+}
+
+/* Account Detail View */
+.account-detail-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--white);
+  border: 1px solid #D0D5DD;
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.back-button:hover {
+  background: #F8FAFC;
+  border-color: #ADB5BD;
+}
+
+.detail-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  flex: 1;
+}
+
+.detail-balance {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.detail-balance span {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-left: 8px;
+}
+
+/* Filters Bar */
+.filters-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-group label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.filter-input {
+  padding: 8px 12px;
+  border: 1px solid #D0D5DD;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-primary);
+  background: var(--white);
+  min-width: 160px;
+  transition: border-color 0.15s ease;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid #D0D5DD;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-primary);
+  background: var(--white);
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.clear-filters-btn {
+  padding: 8px 16px;
+  background: var(--white);
+  border: 1px solid #D0D5DD;
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.clear-filters-btn:hover {
+  background: #F8FAFC;
+  border-color: #ADB5BD;
+}
+
+.view-report-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--primary-blue);
+  border: 1px solid var(--primary-blue);
+  border-radius: 6px;
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-left: auto;
+}
+
+.view-report-btn:hover {
+  background: #4338CA;
+  border-color: #4338CA;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+}
+
+.view-report-btn svg {
+  flex-shrink: 0;
+}
+
+.export-excel-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #16A34A;
+  border: 1px solid #16A34A;
+  border-radius: 6px;
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-left: 0;
+}
+
+.export-excel-btn:hover {
+  background: #15803D;
+  border-color: #15803D;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(22, 163, 74, 0.2);
+}
+
+.export-excel-btn svg {
+  flex-shrink: 0;
+}
+
+/* Category Badges */
+.category-badge {
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.category-badge.income {
+  background: #D4EDDA;
+  color: #155724;
+  border: 1px solid #C3E6CB;
+}
+
+.category-badge.expense {
+  background: #F8D7DA;
+  color: #721C24;
+  border: 1px solid #F5C6CB;
+}
+
+/* Responsive for Accounts Page */
+@media (max-width: 768px) {
+  .accounts-page {
+    padding: 12px;
+  }
+
+  .accounts-summary-bar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .accounts-summary-bar .summary-label {
+    font-size: 10px;
+  }
+
+  .accounts-summary-bar .summary-value {
+    font-size: 16px;
+  }
+
+  .spreadsheet-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 6px;
+  }
+
+  .spreadsheet-table {
+    min-width: 800px;
+  }
+
+  .spreadsheet-cell {
+    padding: 8px 10px;
+    font-size: 11px;
+    min-height: 36px;
+  }
+
+  .header-cell {
+    font-size: 10px;
+    padding: 8px 10px;
+  }
+
+  /* Detail View Mobile */
+  .detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .detail-title {
+    font-size: 16px;
+  }
+
+  .detail-balance {
+    font-size: 13px;
+    width: 100%;
+  }
+
+  .detail-balance span {
+    font-size: 18px;
+  }
+
+  .back-button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  /* Filters Bar Mobile */
+  .filters-bar {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .filter-input,
+  .filter-select {
+    width: 100%;
+    min-width: auto;
+    font-size: 12px;
+    padding: 7px 10px;
+  }
+
+  .filter-group label {
+    font-size: 10px;
+  }
+
+  .clear-filters-btn,
+  .view-report-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 12px;
+    padding: 10px 14px;
+  }
+
+  .view-report-btn {
+    margin-left: 0;
+  }
+
+  /* Status and Category Badges Mobile */
+  .status-badge,
+  .category-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  /* Clickable rows on mobile */
+  .clickable-row {
+    cursor: pointer;
+  }
+
+  /* Total row mobile */
+  .total-row .spreadsheet-cell {
+    font-size: 11px;
   }
 }

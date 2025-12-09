@@ -80,7 +80,7 @@ export default function Header({ title, searchPlaceholder = "Search for transact
       <div className="header-right">
         <div className="search-box">
           <SearchIcon />
-          <input type="text" placeholder={searchPlaceholder} />
+          <input type="text" placeholder={searchPlaceholder} suppressHydrationWarning />
         </div>
         <div className="header-icon">
           <MessageIcon />

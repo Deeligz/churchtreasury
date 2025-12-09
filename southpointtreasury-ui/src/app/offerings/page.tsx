@@ -78,8 +78,21 @@ export default function OfferingsPage() {
 
   const handleLooseOfferingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const coinsTotal = Object.values(coins).reduce((sum, val) => sum + (parseFloat(val) || 0), 0);
-    const billsTotal = Object.values(bills).reduce((sum, val) => sum + (parseFloat(val) || 0), 0);
+    const coinsTotal =
+      (parseFloat(coins.penny) || 0) * 0.01 +
+      (parseFloat(coins.nickel) || 0) * 0.05 +
+      (parseFloat(coins.dime) || 0) * 0.10 +
+      (parseFloat(coins.quarter) || 0) * 0.25 +
+      (parseFloat(coins.halfDollar) || 0) * 0.50 +
+      (parseFloat(coins.dollar) || 0) * 1.00;
+    const billsTotal =
+      (parseFloat(bills.one) || 0) * 1 +
+      (parseFloat(bills.two) || 0) * 2 +
+      (parseFloat(bills.five) || 0) * 5 +
+      (parseFloat(bills.ten) || 0) * 10 +
+      (parseFloat(bills.twenty) || 0) * 20 +
+      (parseFloat(bills.fifty) || 0) * 50 +
+      (parseFloat(bills.hundred) || 0) * 100;
     const checksTotal = checks.reduce((sum, check) => sum + (parseFloat(check.amount) || 0), 0);
     const total = coinsTotal + billsTotal + checksTotal;
     alert(`Loose Offering submitted! Total: $${total.toFixed(2)}`);
@@ -300,31 +313,38 @@ export default function OfferingsPage() {
               <div className="coins-grid">
                 <div className="coin-field">
                   <label>1¢</label>
-                  <input type="number" step="0.01" value={coins.penny} onChange={(e) => setCoins({...coins, penny: e.target.value})} placeholder="$0.00" />
+                  <input type="number" step="0.01" value={coins.penny} onChange={(e) => setCoins({...coins, penny: e.target.value})} placeholder="$0" />
                 </div>
                 <div className="coin-field">
                   <label>5¢</label>
-                  <input type="number" step="0.01" value={coins.nickel} onChange={(e) => setCoins({...coins, nickel: e.target.value})} placeholder="$0.00" />
+                  <input type="number" step="0.01" value={coins.nickel} onChange={(e) => setCoins({...coins, nickel: e.target.value})} placeholder="$0" />
                 </div>
                 <div className="coin-field">
                   <label>10¢</label>
-                  <input type="number" step="0.01" value={coins.dime} onChange={(e) => setCoins({...coins, dime: e.target.value})} placeholder="$0.00" />
+                  <input type="number" step="0.01" value={coins.dime} onChange={(e) => setCoins({...coins, dime: e.target.value})} placeholder="$0" />
                 </div>
                 <div className="coin-field">
                   <label>25¢</label>
-                  <input type="number" step="0.01" value={coins.quarter} onChange={(e) => setCoins({...coins, quarter: e.target.value})} placeholder="$0.00" />
+                  <input type="number" step="0.01" value={coins.quarter} onChange={(e) => setCoins({...coins, quarter: e.target.value})} placeholder="$0" />
                 </div>
                 <div className="coin-field">
                   <label>50¢</label>
-                  <input type="number" step="0.01" value={coins.halfDollar} onChange={(e) => setCoins({...coins, halfDollar: e.target.value})} placeholder="$0.00" />
+                  <input type="number" step="0.01" value={coins.halfDollar} onChange={(e) => setCoins({...coins, halfDollar: e.target.value})} placeholder="$0" />
                 </div>
                 <div className="coin-field">
                   <label>$1</label>
-                  <input type="number" step="0.01" value={coins.dollar} onChange={(e) => setCoins({...coins, dollar: e.target.value})} placeholder="$0.00" />
+                  <input type="number" step="0.01" value={coins.dollar} onChange={(e) => setCoins({...coins, dollar: e.target.value})} placeholder="$0" />
                 </div>
               </div>
               <div className="section-total">
-                Total: ${(Object.values(coins).reduce((sum, val) => sum + (parseFloat(val) || 0), 0)).toFixed(2)}
+                Total: ${(
+                  (parseFloat(coins.penny) || 0) * 0.01 +
+                  (parseFloat(coins.nickel) || 0) * 0.05 +
+                  (parseFloat(coins.dime) || 0) * 0.10 +
+                  (parseFloat(coins.quarter) || 0) * 0.25 +
+                  (parseFloat(coins.halfDollar) || 0) * 0.50 +
+                  (parseFloat(coins.dollar) || 0) * 1.00
+                ).toFixed(2)}
               </div>
             </div>
 
@@ -362,7 +382,15 @@ export default function OfferingsPage() {
                 </div>
               </div>
               <div className="section-total">
-                Total: ${(Object.values(bills).reduce((sum, val) => sum + (parseFloat(val) || 0), 0)).toFixed(2)}
+                Total: ${(
+                  (parseFloat(bills.one) || 0) * 1 +
+                  (parseFloat(bills.two) || 0) * 2 +
+                  (parseFloat(bills.five) || 0) * 5 +
+                  (parseFloat(bills.ten) || 0) * 10 +
+                  (parseFloat(bills.twenty) || 0) * 20 +
+                  (parseFloat(bills.fifty) || 0) * 50 +
+                  (parseFloat(bills.hundred) || 0) * 100
+                ).toFixed(2)}
               </div>
             </div>
 
@@ -403,6 +431,27 @@ export default function OfferingsPage() {
           </div>
 
           <div className="loose-offering-actions">
+            <div className="offering-card total-card">
+              <div className="total-display">
+                <span className="total-label">TOTAL CURRENT OFFERING</span>
+                <span className="total-value">${(
+                  (parseFloat(coins.penny) || 0) * 0.01 +
+                  (parseFloat(coins.nickel) || 0) * 0.05 +
+                  (parseFloat(coins.dime) || 0) * 0.10 +
+                  (parseFloat(coins.quarter) || 0) * 0.25 +
+                  (parseFloat(coins.halfDollar) || 0) * 0.50 +
+                  (parseFloat(coins.dollar) || 0) * 1.00 +
+                  (parseFloat(bills.one) || 0) * 1 +
+                  (parseFloat(bills.two) || 0) * 2 +
+                  (parseFloat(bills.five) || 0) * 5 +
+                  (parseFloat(bills.ten) || 0) * 10 +
+                  (parseFloat(bills.twenty) || 0) * 20 +
+                  (parseFloat(bills.fifty) || 0) * 50 +
+                  (parseFloat(bills.hundred) || 0) * 100 +
+                  checks.reduce((sum, check) => sum + (parseFloat(check.amount) || 0), 0)
+                ).toFixed(2)}</span>
+              </div>
+            </div>
             <button type="submit" className="offering-btn primary">
               <SaveIcon />
               Submit

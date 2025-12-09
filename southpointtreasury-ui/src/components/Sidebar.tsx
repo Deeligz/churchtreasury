@@ -16,6 +16,10 @@ const OfferingIcon = () => (
   <img src="/offering.svg" alt="Offerings" className="nav-icon-img" />
 );
 
+const BudgetIcon = () => (
+  <img src="/budget.svg" alt="Accounts" className="nav-icon-img" />
+);
+
 const CardIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
@@ -74,6 +78,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { id: "dashboard", icon: <HomeIcon />, href: "/dashboard" },
   { id: "offerings", icon: <OfferingIcon />, href: "/offerings" },
+  { id: "accounts", icon: <BudgetIcon />, href: "/accounts" },
 ];
 
 interface SidebarProps {
@@ -87,6 +92,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const getActiveNav = () => {
     if (pathname === "/dashboard") return "dashboard";
     if (pathname === "/offerings") return "offerings";
+    if (pathname === "/accounts") return "accounts";
     return "dashboard";
   };
 
