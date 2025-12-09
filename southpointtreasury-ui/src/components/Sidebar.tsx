@@ -20,6 +20,10 @@ const BudgetIcon = () => (
   <img src="/budget.svg" alt="Accounts" className="nav-icon-img" />
 );
 
+const MembersIcon = () => (
+  <img src="/members.svg" alt="Members" className="nav-icon-img" />
+);
+
 const CardIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
@@ -79,6 +83,7 @@ const navItems: NavItem[] = [
   { id: "dashboard", icon: <HomeIcon />, href: "/dashboard" },
   { id: "offerings", icon: <OfferingIcon />, href: "/offerings" },
   { id: "accounts", icon: <BudgetIcon />, href: "/accounts" },
+  { id: "members", icon: <MembersIcon />, href: "/members" },
 ];
 
 interface SidebarProps {
@@ -93,6 +98,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname === "/dashboard") return "dashboard";
     if (pathname === "/offerings") return "offerings";
     if (pathname === "/accounts") return "accounts";
+    if (pathname === "/members") return "members";
     return "dashboard";
   };
 

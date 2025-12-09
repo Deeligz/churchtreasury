@@ -3647,3 +3647,141 @@ input {
     font-size: 11px;
   }
 }
+
+/* Members Page Styles */
+.members-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #E5E7EB;
+  text-align: center;
+}
+
+.stat-card h3 {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: var(--font-primary);
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin: 0;
+  font-family: var(--font-primary);
+}
+
+.member-profile-card {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #E5E7EB;
+  margin-top: 20px;
+}
+
+.profile-section {
+  margin-bottom: 30px;
+}
+
+.profile-section:last-of-type {
+  margin-bottom: 20px;
+}
+
+.profile-section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #E5E7EB;
+  font-family: var(--font-primary);
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.detail-item label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  min-width: 140px;
+  font-family: var(--font-primary);
+}
+
+.detail-item span {
+  font-size: 13px;
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+}
+
+.profile-actions {
+  display: flex;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid #E5E7EB;
+}
+
+/* Mobile Responsive for Members Page */
+@media (max-width: 768px) {
+  .members-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+
+  .member-profile-card {
+    padding: 20px;
+  }
+
+  .detail-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .detail-item label {
+    min-width: auto;
+    font-size: 12px;
+  }
+
+  .detail-item span {
+    font-size: 13px;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+  }
+
+  .profile-actions button {
+    width: 100%;
+  }
+}
