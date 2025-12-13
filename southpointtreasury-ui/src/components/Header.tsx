@@ -2,7 +2,18 @@
 
 // Helper function to get greeting based on time of day
 const getGreeting = () => {
-  const hour = new Date().getHours();
+  const now = new Date();
+  const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 5 = Friday, 6 = Saturday
+  const hour = now.getHours();
+  
+  // Check if it's Sabbath time: Friday 7pm (19:00) until Saturday 7pm (19:00)
+  const isSabbath = (day === 5 && hour >= 19) || (day === 6 && hour < 19);
+  
+  if (isSabbath) {
+    return "Happy Sabbath";
+  }
+  
+  // Regular time-based greetings
   if (hour < 12) return "Good Morning";
   if (hour < 18) return "Good Afternoon";
   return "Good Evening";
